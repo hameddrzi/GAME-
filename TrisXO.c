@@ -1,60 +1,67 @@
 #include <stdio.h>
-#include <stdbool.h>
-#include <string.h>
+
 #define ROW 3
 #define COL 3
 
 int main() {
     char mat[ROW][COL];
-    char input;
 
-    for(int i=0;i<ROW;i++) {
-        for (int j = 0; j <COL; ++j) {
-            scanf("%s", &input);
-
-            if(input == 'X' || input == 'O'){
-                mat[i][j] = input;
-            } else{
-                printf("non valido");
-            }
-
+    for (int i = 0; i < ROW; ++i) {
+        for (int j = 0; j < COL; ++j) {
+            scanf("%c", &mat[i][j]);
         }
     }
-    bool tutti = false;
-    for (int i = 0; i < ROW && !tutti; ++i) {
-        for (int j = 0; j < COL && !tutti; ++j) {
-            if       ((mat[0][0]=='X' && mat[0][1]=='X' && mat[0][2]) == 'X') || (mat[0][0]=='O' && mat[0][1]=='O' && mat[0][2] == 'O')) {
-                    //tutti = true;
-                    printf("hai vonto",tutti);
-            } else if((mat[1][0] =='X' && mat[1][1] =='X' && mat[1][2] == 'X') || (mat[1][0]=='O' && mat[1][1]=='O' && mat[1][2] == 'O')) {
-                    //tutti = true;
-                    printf("hai vonto",tutti);
-            }else if((mat[2][0]=='X' && mat[1][1]=='X' && mat[1][2] == 'X') || (mat[2][0]=='O' && mat[2][1]=='O' && mat[2][2] == 'O')){
-                    //tutti = true;
-                    printf("hai vinto",tutti);
-            }else if((mat[0][0] =='X' && mat[1][0]== 'X' && mat[2][0] == 'X') || (mat[0][0]=='O' && mat[1][0]=='O' && mat[2][0] == 'O')){
-                    //tutti = true;
-                    printf("hai vinto",tutti);
-            } else if((mat[0][1]=='X' && mat[1][1]=='X' && mat[2][1] == 'X' )|| (mat[0][1]=='O' && mat[1][1]== 'O' && mat[2][1] == 'O')){
-                    //tutti = true;
-                    printf("hai vinto",tutti);
-            } else if((mat[0][2]=='X' && mat[1][2]=='X' && mat[2][2] == 'X') ||(mat[0][2]=='O' && mat[1][2]=='O' && mat[2][2] == 'O'){
-                    //tutti = true;
-                    printf("hai vinto",tutti);
-            }else if((mat[0][0]=='X' && mat[1][1]=='X' && mat[2][2] == 'X' || (mat[0][0]=='O' && mat[1][1]=='O' && mat[2][2] == 'O')){
-                    //tutti = true;
-                    printf("hai vinto",tutti);
-            }else if((mat[2][0]=='X' && mat[1][1]=='X' && mat[0][2] == 'X') || (mat[2][0]=='O' && mat[1][1]=='0' && mat[0][2]) == 'O')){
-                    //tutti = true;
-                    printf("hai vinto", tutti);
-            }
 
+    for (int i = 0; i < ROW; ++i) {
+        if(mat[i][0] == mat[i][1] && mat[i][1] == mat[i][2]){
+                if(mat[i][0] == 'X') {
+                    printf("X\n");
+                    return 0;
+                }else if(mat[i][0] == 'O') {
+                    printf("O\n");
+                    return 0;
+                }
+        }
+
+    }
+    for (int j = 0; j < ROW; ++j) {
+
+        if(mat[0][j] == mat[1][j] && mat[1][j] == mat[2][j]) {
+                if (mat[0][j] == 'X') {
+                    printf("X\n");
+                    return 0;
+                } else if (mat[0][j] == 'O') {
+                    printf("O\n");
+                    return 0;
+                }
+        }
+
+    }
+
+    if(mat[0][0] == mat[1][1] && mat[1][1] == mat[2][2]) {
+        if (mat[0][0] == 'X') {
+            printf("X\n");
+            return 0;
+        } else if (mat[0][0] == 'O') {
+            printf("O\n");
+            return 0;
         }
     }
-    printf("gioco terminato senza vincere");
 
 
 
+    if(mat[0][2] == mat[1][1] && mat[1][1] == mat[2][0]) {
+        if (mat[0][2] == 'X') {
+            printf("X\n");
+            return 0;
+        } else if (mat[0][2] == 'O') {
+            printf("O\n");
+            return 0;
+        }
+    }
 
 
-}
+    printf("-\n");
+    return 0;
+    
+}    
